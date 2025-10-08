@@ -1,4 +1,4 @@
-# Prácticas kubernet4es
+# Prácticas kubernetes
 ## Ficheros de prácticas curso kubernetes
 - Algunos ficheros realizados duraante las prácticas y apuntes varios.
 
