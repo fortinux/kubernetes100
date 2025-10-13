@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: error
+spec:
+  selector:
+    matchLabels:
+      app: error
+  replicas: 1
+  template: 
+    metadata:
+      labels:
+        app: error
+    spec:
+      containers:
+        - name: escritor
+          image: centos:7
+          command:
+            - sh 
+            - '-c'  
+            - "printf 'datos persistentes a escribir:' > /tmp/out/data; sleep 10000"
+          volumeMounts:
+            - name: intercambio
+              mountPath: /tmp/out
+        - name: lector
+          image: centos:7
+          command:
+          - sh 
+          - '-c' 
+          - "cat /tmp/in/data; sleep 10000" 
+          volumeMounts: 
+          - name: intercambio
+            mountPath: /tmp/data         
+      volumes: 
+      - name: intercambio 
+        emptyDir: {}
